@@ -14,8 +14,7 @@ goto ${custom_choice}
 :clonezilla_abella
 imgfree
 set url ${live_endpoint}/debian-squash/releases/download/2.8.0-27-21f7bd02/
-kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic ${cmdline}
-initrd ${url}initrd
+kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset locales=en_US.UTF-8 keyboard-layouts=fr ocs_preload="mount -t cifs //10.11.0.13/CAPSULE/Backups/Abella /home/partimag -o vers=1.0,rw,sec=ntlm,iocharset=utf8,noperm,username=reaper,password=reaper" ocs_live_run="ocs-sr -p poweroff -z1 -noabo -senc savedisk autoname sda" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic
 boot
 
 :custom_exit
