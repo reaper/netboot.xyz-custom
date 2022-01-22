@@ -13,7 +13,7 @@ goto custom_exit
 :clonezilla-boot
 imgfree
 set url ${live_endpoint}/debian-squash/releases/download/2.8.0-27-a90fc92f/
-kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset locales=en_US.UTF-8 keyboard-layouts=fr ocs_prerun1="dhclient -v eth0" ocs_prerun2="sleep 2" ocs_prerun3="mount -t cifs -o vers=1.0,rw,sec=ntlm,username=reaper,password=reaper //10.11.0.13/CAPSULE/Backups/Abella /home/partimag" ocs_prerun4="sleep 2" ocs_live_run="ocs-sr -p poweroff -z2p -q -noabo -senc savedisk autoname sda" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic ${cmdline}
+kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset locales=en_US.UTF-8 keyboard-layouts=fr ocs_prerun1="dhclient -v eth0" ocs_prerun2="sleep 2" ocs_prerun3="mount -t cifs -o vers=1.0,rw,sec=ntlm,username=reaper,password=reaper //10.11.0.13/CAPSULE/Backups/Abella /home/partimag" ocs_prerun4="sleep 2" ocs_live_run="ocs-sr -p poweroff -z1p -q -noabo -senc savedisk autoname sda" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic ${cmdline}
 initrd ${url}initrd
 boot
 
