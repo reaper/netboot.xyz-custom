@@ -1,12 +1,40 @@
 #!ipxe
 ###
-### netboot.xyz-custom menu
+### netboot.xyz-custom menu example
 ###
 
-:start
-echo Hello world!
-sleep 10
+:custom
+clear custom_choice
+menu Reaper Network Utilities
+item --gap Clonezilla
+item clonezilla_abella ${space} Abella
+item clonezilla_anna ${space} Anna
+item --gap This is a second sub menu
+item option_three ${space} Loads another custom sub menu
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
 goto custom_exit
 
+:clonezilla_abella
+imgfree
+set name Abella
+set url ${live_endpoint}/debian-squash/releases/download/2.8.0-27-21f7bd02/
+kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset locales=en_US.UTF-8 keyboard-layouts=fr ocs_live_run="ocs-live-general" ocs_preload="mount -t cifs //10.11.0.13/CAPSULE/Backups/${name} /home/partimag -o vers=1.0,rw,sec=ntlm,iocharset=utf8,noperm,username=reaper,password=reaper" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic ${cmdline}
+initrd ${url}initrd
+boot || goto custom_exit
+
+:clonezilla_anna
+imgfree
+set url ${live_endpoint}/debian-squash/releases/download/2.8.0-27-21f7bd02/
+kernel ${url}vmlinuz boot=live username=user union=overlay config components noswap edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_batch=no net.ifnames=0 nosplash noprompt fetch=${url}filesystem.squashfs initrd=initrd.magic ${cmdline}
+initrd ${url}initrd
+boot || goto custom_exit
+
+:option_three
+echo Chains into another menu...
+chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
+
 :custom_exit
-exit 0
+chain utils.ipxe
+exit
