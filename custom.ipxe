@@ -4,7 +4,7 @@
 clear custom_choice
 menu Reaper
 item --gap Clonezilla
-item clonezilla-abella ${space} Abellae
+item clonezilla-abella ${space} Abella
 item clonezilla-anna ${space} Anna
 choose custom_choice || goto custom_exit
 echo ${cls}
