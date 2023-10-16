@@ -6,8 +6,8 @@ menu Reaper
 item --gap Clonezilla
 item clonezilla-jayden ${space} Jayden
 item clonezilla-abella ${space} Abella (Lily)
-item clonezilla-anna ${space} Anna (Maéva)
-item clonezilla-riley ${space} Riley (Grégoire)
+item clonezilla-anna ${space} Anna (Maeva)
+item clonezilla-riley ${space} Riley (Gregoire)
 choose custom_choice || goto custom_exit
 echo ${cls}
 goto ${custom_choice}
